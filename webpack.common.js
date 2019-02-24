@@ -1,16 +1,9 @@
-const HtmlWebpackPlugin = require("html-webpack-plugin")
-
+const Html = require('html-webpack-plugin')
 module.exports = {
-    mode: "production",
+    mode: "development",
     entry: './src/index.js',
-    output: {
-        filename: "ws-reborn.min.js",
-        library: "WSR",
-        libraryTarget: "umd",
-        umdNamedDefine: true
-    },
-    devServer:{
-        port:65431
+    devServer: {
+        port: 65431
     },
     module: {
         rules: [
@@ -21,7 +14,7 @@ module.exports = {
             }
         ]
     },
-    plugins:[
-        new HtmlWebpackPlugin("dist")
+    plugins: [
+        new Html(),
     ]
 }

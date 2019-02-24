@@ -29,7 +29,10 @@ function Foo({ url, pingTimeout = 4000, pongTimeout = 6000, reconnectInterval = 
     _me = this;
     _me.opts = { url, pingTimeout, pongTimeout, reconnectInterval, pingMsg, print }
 
-    //  如果实例化后未定义 onopen 方法，_me.onopen 会报错，因此提前全部覆盖一下
+    //  连接次数
+    _me.times = 0
+    
+    //  比如实例化后未定义 onopen 方法，_me.onopen 会报错，因此提前全部覆盖一下
     this.onopen = () => { };
     this.onmessage = () => { };
     this.onclose = () => { };
@@ -40,7 +43,7 @@ function Foo({ url, pingTimeout = 4000, pongTimeout = 6000, reconnectInterval = 
 }
 
 //  初始化，让原生 onopen 能够触发实例 onopen
-Foo.prototype.init = function () {
+function init() {
     _me.ws.onopen = () => {
         log({ msg: '已经连接', print: _me.opts.print })
         _me.onopen()
@@ -81,9 +84,11 @@ Foo.prototype.close = function () {
 //  建立连接
 function createConnect() {
     _me.ws = new WebSocket(_me.opts.url)
+    _me.times++
     console.group("Websocket")
     log({ msg: '正在连接...', print: _me.opts.print })
-    _me.init()
+    log({ msg: `当前为第 ${_me.times} 次连接`, print: _me.opts.print })
+    init()
 }
 
 //  发送心跳检测，间隔 _me.opts.pingTimeout

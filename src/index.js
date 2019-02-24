@@ -4,17 +4,24 @@
 //     url: "ws://123.207.167.163:9010/ajaxchattest"
 // })
 
-const ws_require = require("./ws-reborn.js")
+const WSR = require("./ws-reborn.js").default
 
-new ws_require.default({
+const wsr = new WSR({
     url: "ws://123.207.167.163:9010/ajaxchattest"
 })
 
-
 function foo() {
+    const body = document.querySelector("body")
     const ele = document.createElement("div");
-    ele.innerHTML = "请打开控制台"
-    document.querySelector('body').appendChild(ele)
+    ele.innerHTML = "Please open the console"
+    body.appendChild(ele)
+
+    const btn = document.createElement("button")
+    btn.innerHTML = "Print connection times"
+    btn.onclick = function () {
+        console.log(wsr)
+    }
+    body.append(btn)
 }
 
 foo()
