@@ -30,6 +30,7 @@ pingMsg | 否 | String | Ping! | 心跳文本
 print | 否 | Boolean | true | 在控制台打印 log
 
 实例属性及方法
+
 名称 | 类型 | 描述
 ---|----|---
 onopen | Function | 原生事件的包装
