@@ -1,4 +1,4 @@
-# WebSocket 心跳重连
+# WebSocket 心跳重连插件
 ***
 ### 简介
 基于浏览器原生 WebSocket 封装，用于保持 WebSocket 持续连接状态。
